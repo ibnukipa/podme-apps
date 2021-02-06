@@ -1,11 +1,11 @@
 /* @flow */
 
 import React, { useEffect } from 'react';
-import { Text } from 'react-native';
 import BootSplash from 'react-native-bootsplash';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
+import Text from 'components/Text';
 import { persistor, store } from 'states/store';
 
 const App: () => React$Node = () => {
@@ -15,7 +15,7 @@ const App: () => React$Node = () => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <Text>test</Text>
+        <Text bolder>test</Text>
       </PersistGate>
     </Provider>
   );
