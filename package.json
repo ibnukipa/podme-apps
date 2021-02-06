@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "android:clean": "cd android && ./gradlew clean",
     "ios": "react-native run-ios",
+    "ios:clean": "watchman watch-del-all && cd ios && xcodebuild clean",
     "start": "react-native start",
     "check-dep": "yarn install && cd ios && pod install",
+    "xcode": "open ios/PodMe.xcworkspace",
     "test": "jest",
     "lint": "eslint ."
   },
