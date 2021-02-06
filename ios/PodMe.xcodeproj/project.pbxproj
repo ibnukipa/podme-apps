@@ -17,9 +17,9 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* PodMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PodMeTests.m */; };
 		75170F9089B24FFCDBE9EC41 /* libPods-PodMe-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F0DD653E92ECF6B86FE03B2 /* libPods-PodMe-tvOSTests.a */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		AB8E4BAD94CBCC7F4B94D94B /* libPods-PodMe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FE510744210CC8A79AE3573 /* libPods-PodMe.a */; };
 		ADDE1D8C53D6F9BC07A453BE /* libPods-PodMe-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BA0472DA7FF38D7796954D6 /* libPods-PodMe-tvOS.a */; };
+		EA0473F825CE904F00B39971 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA0473F725CE904F00B39971 /* BootSplash.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +56,6 @@
 		2D02E4901E0B4A5D006451C7 /* PodMe-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PodMe-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36410C14DE531C60EE7C211A /* Pods-PodMe-PodMeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodMe-PodMeTests.release.xcconfig"; path = "Target Support Files/Pods-PodMe-PodMeTests/Pods-PodMe-PodMeTests.release.xcconfig"; sourceTree = "<group>"; };
 		452AC47543C96D6165101058 /* Pods-PodMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodMe.release.xcconfig"; path = "Target Support Files/Pods-PodMe/Pods-PodMe.release.xcconfig"; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = PodMe/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8F0DD653E92ECF6B86FE03B2 /* libPods-PodMe-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PodMe-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FE510744210CC8A79AE3573 /* libPods-PodMe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PodMe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A53D5338A6ECF7B40EF32248 /* Pods-PodMe-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodMe-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-PodMe-tvOSTests/Pods-PodMe-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -65,6 +64,7 @@
 		C73672D8875D10D63A40C3B4 /* Pods-PodMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodMe.debug.xcconfig"; path = "Target Support Files/Pods-PodMe/Pods-PodMe.debug.xcconfig"; sourceTree = "<group>"; };
 		C7EA081DAE5BE69BA14FA4C1 /* Pods-PodMe-PodMeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodMe-PodMeTests.debug.xcconfig"; path = "Target Support Files/Pods-PodMe-PodMeTests/Pods-PodMe-PodMeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D55973335C9C6A1DFD8F4431 /* Pods-PodMe-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodMe-tvOS.release.xcconfig"; path = "Target Support Files/Pods-PodMe-tvOS/Pods-PodMe-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		EA0473F725CE904F00B39971 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = PodMe/BootSplash.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
@@ -130,7 +130,7 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
+				EA0473F725CE904F00B39971 /* BootSplash.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = PodMe;
@@ -340,7 +340,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				EA0473F825CE904F00B39971 /* BootSplash.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
