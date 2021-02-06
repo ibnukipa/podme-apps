@@ -14,9 +14,19 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.5.0",
+    "lodash-es": "^4.17.20",
+    "normalizr": "^3.6.1",
+    "pluralize": "^8.0.0",
     "react": "16.13.1",
     "react-native": "0.63.4",
-    "react-native-bootsplash": "^3.1.2"
+    "react-native-bootsplash": "^3.1.2",
+    "react-native-sensitive-info": "^5.5.8",
+    "react-redux": "^7.2.2",
+    "redux": "^4.0.5",
+    "redux-observable": "^1.2.0",
+    "redux-persist": "^6.0.0",
+    "rxjs": "^6.6.3"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

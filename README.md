@@ -10,10 +10,12 @@ PodMe uses a number of open source projects to work magnificent:
 * [React Redux](https://redux.js.org) - A predictable state container for JavaScript apps.
 
 ### Running from the Code
-PodMe requires [Node.js](https://nodejs.org/).
-Recommended to use `yarn`
-```sh
-$ git clone https://github.com/ibnukipa/podme-apps.git
-$ cd podme-apps
-$ yarn check-dep
-```
+PodMe requires
+- [Node.js](https://nodejs.org/).
+- Recommended to use `yarn`
+- `git clone https://github.com/ibnukipa/podme-apps.git`
+- `cd podme-apps`
+- `yarn check-dep`
+
+#### ios : `yarn ios`
+#### android : `yarn android`
