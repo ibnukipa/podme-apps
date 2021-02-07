@@ -10,6 +10,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import { isReadyRouterRef, routerRef } from 'routes/RouterService';
 import Router from 'routes/Router';
+import Toast from 'components/Toast';
 
 import { persistor, store } from 'states/store';
 
@@ -38,6 +39,7 @@ const App: () => React$Node = () => {
             }}
           >
             <Router />
+            <Toast />
           </NavigationContainer>
         </SafeAreaProvider>
       </PersistGate>

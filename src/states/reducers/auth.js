@@ -1,9 +1,10 @@
 /* @flow */
 
-import { createSelector, createSlice, Draft } from '@reduxjs/toolkit';
+import { createSelector, createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
 
 export type AuthState = {
   isLoggedIn: boolean,
+  loggedUserId: number,
 };
 
 const initialState: AuthState = {
@@ -15,8 +16,10 @@ export const AuthSlice = createSlice({
   name: NAME,
   initialState,
   reducers: {
-    authenticated: (state: Draft<AuthState>) => {
+    authenticated: (state: Draft<AuthState>, action: PayloadAction<{ id: number }>) => {
+      const { payload } = action;
       state.isLoggedIn = true;
+      state.loggedUserId = payload.id;
     },
   },
 });
