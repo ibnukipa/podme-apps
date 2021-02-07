@@ -115,5 +115,6 @@ module.exports = {
   },
   "globals": {
     "fetch": true,
+    "window": true,
   },
 };

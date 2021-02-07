@@ -14,6 +14,13 @@ import Container from 'components/Container';
 
 import { persistor, store } from 'states/store';
 
+import { makeServer } from './src/_fakeServer';
+
+if (window.server) {
+  window.server.shutdown();
+}
+window.server = makeServer();
+
 const App: () => React$Node = () => {
   useEffect(() => {
     BootSplash.hide({ fade: true });
