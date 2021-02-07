@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import Colors from 'constants/colors';
 import spaceSize from 'constants/spaceSize';
+import styleHeader from 'constants/styleHeader';
 
 import Container from 'components/Container';
 import Text from 'components/Text';
@@ -26,10 +27,12 @@ import {
 import { deAuthenticated } from 'states/reducers/auth';
 import useInfiniteFetch from 'hooks/useInfiniteFetch';
 
+import { useNavigation } from '@react-navigation/native';
+
 const HomeHeader = () => {
   const dispatch = useDispatch();
   return (
-    <View style={styles.headerContainer}>
+    <View style={styleHeader.container}>
       <Icon
         onPress={() => dispatch(deAuthenticated())}
         size={'huge'}
@@ -44,13 +47,15 @@ const HomeHeader = () => {
   );
 };
 
-const PodSnippet = memo(({ onPress, id }) => {
+const PodSnippet = memo(({ id }) => {
+  const navigation = useNavigation();
   const pod = useSelector((state) => podSelector(state, Number(id)));
+  const pressImage = useCallback(() => navigation.navigate('Pod', { id }), [navigation]);
   return (
     <View>
       <View style={styles.podSnippetContainer}>
         <Image
-          onPress={onPress}
+          onPress={pressImage}
           source={{ uri: pod.banner }}
           style={styles.podSnippetImage}
           resizeMode="cover"
@@ -121,11 +126,6 @@ const Home: () => React$Node = () => {
 };
 
 const styles = StyleSheet.create({
-  headerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
   podSnippetContainer: {
     backgroundColor: Colors.white,
   },
