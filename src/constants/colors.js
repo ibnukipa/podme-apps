@@ -23,11 +23,13 @@ const Colors = {
   blue: '#2196f3',
   teal: '#009688',
   brown: '#795548',
+  yellow: '#ffee58',
   transparent: 'transparent',
 
   primary: '#5b86e5',
 
   gradientPrimary: '#5b86e5',
+  gradientPrimaryDimmed: 'rgba(91, 134, 229, .75)',
   gradientSecondary: '#36d1dc',
   gradientSecondaryDimmed: 'rgba(54, 209, 220, .25)',
 };

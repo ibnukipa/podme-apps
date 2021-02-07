@@ -16,10 +16,15 @@ export const DBSlice = createSlice({
   initialState,
   reducers: {
     normalizeResponse: (state, action) => {
-      const { modelName, data } = action.payload;
+      const { modelName, data, isArray } = action.payload;
       const pluralModelName = pluralize(modelName);
-      const originalData = { [pluralModelName]: data };
-      const { entities } = normalize(originalData, { [pluralModelName]: [schemas[modelName]] });
+      let originalData = data;
+      let schema = schemas[modelName];
+      if (isArray) {
+        originalData = { [pluralModelName]: data };
+        schema = { [pluralModelName]: [schemas[modelName]] };
+      }
+      const { entities } = normalize(originalData, schema);
       forEach(entities, (value, key) => {
         const oldValue = state[key] || {};
         // TODO insert to local DB instead store it to redux state

@@ -102,7 +102,7 @@ module.exports = {
     ],
     "import/prefer-default-export": 0,
     "no-unused-expressions": 0,
-    "babel/no-unused-expressions": 1,
+    "babel/no-unused-expressions": 0,
     "quotes": ["error", "single"],
     "no-param-reassign": 0,
     "no-nested-ternary": 0,
@@ -115,5 +115,6 @@ module.exports = {
   },
   "globals": {
     "fetch": true,
+    "window": true,
   },
 };
