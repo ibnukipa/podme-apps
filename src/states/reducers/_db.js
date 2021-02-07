@@ -4,7 +4,7 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
 import { normalize } from 'normalizr';
 import pluralize from 'pluralize';
-import { forEach } from 'lodash-es';
+import { forEach, forIn, isArray } from 'lodash-es';
 import * as schemas from './_dbSchema';
 
 const initialState = {};
@@ -16,23 +16,34 @@ export const DBSlice = createSlice({
   initialState,
   reducers: {
     normalizeResponse: (state, action) => {
-      const { modelName, data, isArray } = action.payload;
-      const pluralModelName = pluralize(modelName);
-      let originalData = data;
-      let schema = schemas[modelName];
-      if (isArray) {
-        originalData = { [pluralModelName]: data };
-        schema = { [pluralModelName]: [schemas[modelName]] };
+      const { modelName, data, isNested } = action.payload;
+
+      const computeData = (realData, realModel) => {
+        const pluralModelName = pluralize(realModel);
+        let schema = schemas[realModel];
+        let originalData = realData;
+        if (isArray(realData)) {
+          originalData = { [pluralModelName]: realData };
+          schema = { [pluralModelName]: [schemas[realModel]] };
+        }
+        const { entities } = normalize(originalData, schema);
+        forEach(entities, (value, key) => {
+          const oldValue = state[key] || {};
+          // TODO insert to local DB instead store it to redux state
+          state[key] = {
+            ...oldValue,
+            ...value,
+          };
+        });
+      };
+
+      if (isNested) {
+        forIn(data, (originalData, originalModel) => {
+          computeData(originalData, pluralize.singular(originalModel));
+        });
+      } else {
+        computeData(data, modelName);
       }
-      const { entities } = normalize(originalData, schema);
-      forEach(entities, (value, key) => {
-        const oldValue = state[key] || {};
-        // TODO insert to local DB instead store it to redux state
-        state[key] = {
-          ...oldValue,
-          ...value,
-        };
-      });
     },
   },
 });

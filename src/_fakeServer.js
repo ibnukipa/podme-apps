@@ -69,7 +69,7 @@ export function makeServer({ environment = 'development' } = {}) {
         if (user) return new Response(201, {}, user);
         return new Response(401);
       });
-      this.get('/api/pod/:id', (schema, req) => {
+      this.get('/api/pod/:id', function (schema, req) {
         const id = req.params.id;
         const pod = schema.pods.find(id);
         return this.serialize(pod, 'pod-with-relationships');

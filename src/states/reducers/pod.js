@@ -69,6 +69,8 @@ export const PodListSlice = createSlice({
 export const podListStateSelector = (state) => state.podList;
 export const podListSelector = createSelector(podListStateSelector, (podList) => podList?.data);
 export const podSelector = (state, id) => dbIdSelector(state, { modelName: 'pod', id }) || {};
+export const facilitySelector = (state, id) =>
+  dbIdSelector(state, { modelName: 'facility', id }) || {};
 
 // actions and reducer
 export const { podListRequested, podListSuccess, podListError } = PodListSlice.actions;

@@ -1,16 +1,13 @@
 /* @flow */
 
-/* @flow */
-
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import Colors from 'constants/colors';
 import styleHeader from 'constants/styleHeader';
 import spaceSize from 'constants/spaceSize';
-import styleShadow from 'constants/styleShadow';
 
 import Container from 'components/Container';
 import Text from 'components/Text';
@@ -19,7 +16,10 @@ import Image from 'components/Image';
 import Divider from 'components/Divider';
 import Button from 'components/Button';
 
-import { podSelector } from 'states/reducers/pod';
+import { facilitySelector, podSelector } from 'states/reducers/pod';
+import { normalizeResponse } from 'states/reducers/_db';
+import getPod from 'states/apis/getPod';
+import useAxios from 'hooks/useAxios';
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -42,16 +42,43 @@ const PodHeader = ({ id }) => {
     </View>
   );
 };
+const FACILITY_ICONS_COLORS = [Colors.primary, Colors.blueGray700, Colors.deppPurple, Colors.blue];
+const FacilitySnippet = ({ id }) => {
+  const facility = useSelector((state) => facilitySelector(state, id));
+  const color = FACILITY_ICONS_COLORS[Math.floor(Math.random() * FACILITY_ICONS_COLORS.length)];
+  return (
+    <View style={styles.facilityContainer}>
+      <View style={[styles.facilityIcon, { backgroundColor: color }]}>
+        <Text bolder color={Colors.white}>
+          {facility.name?.[0]}
+        </Text>
+      </View>
+      <Text>{facility.name}</Text>
+    </View>
+  );
+};
 
 const Pod: () => React$Node = ({ route }) => {
   const { id } = route.params;
   const insets = useSafeAreaInsets();
-  const pod = useSelector((state) => podSelector(state, id));
+  const dispatch = useDispatch();
 
+  const pod = useSelector((state) => podSelector(state, id));
+  const { fetch: fetchPod } = useAxios(getPod, {
+    onResponse: (data) => {
+      dispatch(normalizeResponse({ modelName: 'pod', data, isNested: true }));
+    },
+  });
+  useEffect(() => {
+    fetchPod({ data: { id } });
+  }, [id]);
   const paddingBottom = useCallback(
     () => (insets.bottom > 0 ? insets.bottom : insets.bottom + spaceSize.medium),
     [insets]
   );
+  const renderFacility = useCallback((facilityId) => (
+    <FacilitySnippet key={`pod-facility-${facilityId}`} id={facilityId} />
+  ));
   return (
     <Container header={<PodHeader id={id} />} backgroundColor={Colors.white}>
       <ScrollView>
@@ -64,6 +91,11 @@ const Pod: () => React$Node = ({ route }) => {
           <Text color={Colors.blueGray}>{pod.description}</Text>
           <Divider space={spaceSize.large} />
           <Text>{pod.detail}</Text>
+          <Divider space={spaceSize.large} />
+          <Text bold color={Colors.primary} size={'small'}>
+            FACILITIES
+          </Text>
+          {pod.facilities?.map(renderFacility)}
         </View>
       </ScrollView>
       <View style={[styles.floatingForm, { paddingBottom: paddingBottom() }]}>
@@ -89,6 +121,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: spaceSize.medium,
     backgroundColor: Colors.gray,
+  },
+  facilityContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: spaceSize.xxSmall,
+  },
+  facilityIcon: {
+    marginRight: spaceSize.small,
+    width: 30,
+    height: 30,
+    borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
