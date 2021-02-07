@@ -4,9 +4,9 @@ import { combineEpics } from 'redux-observable';
 import { catchError, mergeMap } from 'rxjs/operators';
 import { BehaviorSubject, of } from 'rxjs';
 
-import { loginEpic } from 'states/epics/loginEpic';
+import { podListEpic } from 'states/epics/podListEpic';
 
-const epics = [loginEpic];
+const epics = [podListEpic];
 
 const combineEpicsAndCatchErrors = (...allEpics) => (action$, state$) => {
   const enhancedEpics = allEpics.map((epic) => (action2$, state2$) =>

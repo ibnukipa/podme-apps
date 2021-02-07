@@ -27,7 +27,7 @@ const Colors = {
   transparent: 'transparent',
 
   primary: '#5b86e5',
-
+  secondary: '#36d1dc',
   gradientPrimary: '#5b86e5',
   gradientPrimaryDimmed: 'rgba(91, 134, 229, .75)',
   gradientSecondary: '#36d1dc',

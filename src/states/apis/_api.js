@@ -41,7 +41,7 @@ export const Api$ = (options: ApiOptions) => {
       'Content-Type': contentType,
     },
     body,
-  }).pipe(mergeMap((data) => of(CS(data.response, { deep: true }))));
+  }).pipe(mergeMap((data) => of(CS(JSON.parse(data.response), { deep: true }))));
 };
 
 export const ApiAxios = (options: ApiOptions) => (cancelTokenSource) => {

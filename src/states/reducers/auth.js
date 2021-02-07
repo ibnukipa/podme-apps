@@ -21,6 +21,10 @@ export const AuthSlice = createSlice({
       state.isLoggedIn = true;
       state.loggedUserId = payload.id;
     },
+    deAuthenticated: (state: Draft<AuthState>) => {
+      state.isLoggedIn = false;
+      state.loggedUserId = null;
+    },
   },
 });
 
@@ -29,5 +33,5 @@ export const authState = (state) => state?.auth;
 export const authSelector = createSelector(authState, (auth) => auth);
 
 // actions and reducer
-export const { authenticated } = AuthSlice.actions;
+export const { authenticated, deAuthenticated } = AuthSlice.actions;
 export default AuthSlice.reducer;

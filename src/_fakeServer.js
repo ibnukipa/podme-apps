@@ -24,6 +24,9 @@ export function makeServer({ environment = 'development' } = {}) {
       pod: Factory.extend({
         uuid: () => faker.random.uuid(),
         name: () => faker.company.companyName(),
+        banner: () => faker.image.image(),
+        description: () => faker.commerce.productDescription(),
+        price: () => faker.commerce.price(),
         address: () => faker.address.streetAddress(),
       }),
     },

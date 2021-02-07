@@ -10,7 +10,7 @@ const fontSize = {
   large: 16,
   xLarge: 18,
   xxLarge: 20,
-  xxxLarge: 20,
+  xxxLarge: 22,
   uLarge: 24,
   huge: 26,
   xHuge: 28,

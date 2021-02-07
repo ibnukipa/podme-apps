@@ -1,18 +1,29 @@
 /* @flow */
 
 import React, { useRef, useEffect } from 'react';
-import { Animated, Easing, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
-const IconAnimated = Animated.createAnimatedComponent(Icon);
+import { Animated, Easing, StyleSheet, View } from 'react-native';
+import spaceSize from 'constants/spaceSize';
+import Colors from 'constants/colors';
+import Text from 'components/Text';
+import Icon from 'components/Icon';
 
 type Props = {
-  size?: number,
+  size?: string,
   color?: string,
   style?: StyleSheet.Style,
+  message?: string,
+  inlineMessage?: boolean,
+  padded?: boolean,
 };
 
-const IconLoading = ({ size, color, style = {} }: Props) => {
+const IconLoading = ({
+  size = 'huge',
+  color = Colors.primary,
+  style = {},
+  message,
+  inlineMessage,
+  padded,
+}: Props) => {
   const rotationAnim = useRef(new Animated.Value(0)).current;
   useEffect(() => {
     Animated.loop(
@@ -29,20 +40,50 @@ const IconLoading = ({ size, color, style = {} }: Props) => {
     outputRange: ['0deg', '360deg'],
   });
   return (
-    <IconAnimated
-      style={[styles.loadingIcon, { transform: [{ rotate }] }, style]}
-      name={'gamepad-circle'}
-      size={size}
-      color={color}
-    />
+    <View
+      style={[
+        styles.container,
+        padded && styles.containerPadded,
+        inlineMessage && styles.containerInline,
+        style,
+      ]}
+    >
+      <Icon
+        style={[styles.loadingIcon, { transform: [{ rotate }] }]}
+        name={'gamepad-circle'}
+        type={'mat'}
+        size={size}
+        color={color}
+      />
+      {message && (
+        <Text size={'small'} style={[styles.message, inlineMessage && styles.messageInline]}>
+          {message}
+        </Text>
+      )}
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+  },
+  containerInline: {
+    flexDirection: 'row',
+  },
+  containerPadded: {
+    paddingVertical: spaceSize.medium,
+  },
   loadingIcon: {
-    minWidth: 15,
-    marginRight: 5,
+    minWidth: spaceSize.medium,
+    marginRight: spaceSize.xSmall,
     textAlign: 'center',
+  },
+  message: {
+    marginTop: spaceSize.xSmall,
+  },
+  messageInline: {
+    marginLeft: spaceSize.xSmall,
   },
 });
 

@@ -4,7 +4,6 @@ import React, { Node } from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import Colors from 'constants/colors';
-import fontSize from 'constants/fontSize';
 import spaceSize from 'constants/spaceSize';
 
 import Touchable from 'components/Touchable';
@@ -60,7 +59,7 @@ const Button = ({
       ]}
     >
       {isLoading ? (
-        <IconLoading size={fontSize.large} color={Colors.white} />
+        <IconLoading size={'large'} color={Colors.white} />
       ) : (
         <>
           <Text

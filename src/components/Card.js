@@ -28,7 +28,7 @@ const Card = ({ children, containerStyle, noShadow, isLoading }: CardProps) => (
     {children}
     {isLoading && (
       <View style={styles.loadingMaskedView}>
-        <IconLoading color={Colors.primary} size={30} />
+        <IconLoading color={Colors.primary} />
       </View>
     )}
   </View>

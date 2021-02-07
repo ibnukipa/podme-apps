@@ -21,12 +21,8 @@ export type ContainerProps = {
   header?: React.Node | string,
 };
 
-const ContainerChildrenWrapper = React.memo(({ children, header, containerStyle }) => (
-  <View
-    style={[styles.childrenContainer, header && styles.childrenContainerWithHeader, containerStyle]}
-  >
-    {children}
-  </View>
+const ContainerChildrenWrapper = React.memo(({ children, containerStyle }) => (
+  <View style={[styles.childrenContainer, containerStyle]}>{children}</View>
 ));
 
 const Container = ({
@@ -45,7 +41,7 @@ const Container = ({
   }, [insets]);
   const colors = useCallback(
     () => [backgroundColor || Colors.gradientPrimary, backgroundColor || Colors.gradientSecondary],
-    []
+    [backgroundColor]
   );
   return (
     <LinearGradient
@@ -87,9 +83,6 @@ const styles = StyleSheet.create({
   childrenContainer: {
     flex: 1,
     backgroundColor: Colors.transparent,
-  },
-  childrenContainerWithHeader: {
-    backgroundColor: Colors.white,
   },
   headerContainer: {
     paddingVertical: spaceSize.medium,

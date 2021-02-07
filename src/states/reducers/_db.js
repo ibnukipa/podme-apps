@@ -39,12 +39,12 @@ export const DBSlice = createSlice({
 
 // selectors
 export const dbModelSelector = createSelector(
-  (state, { modelName }) => [state.db, pluralize(modelName)],
+  (state, { modelName }) => [state._db, pluralize(modelName)],
   ([db, modelName]) => db?.[modelName] || {}
 );
 export const dbIdSelector = createSelector(
-  (state, { modelName, id }) => [state.db?.[pluralize(modelName)], id],
-  ([table, id]) => table?.[id] || {}
+  (state, { modelName, id }) => [state._db?.[pluralize(modelName)], id],
+  ([model, id]) => model?.[id] || {}
 );
 
 // TODO add selector to create query for Local DB
