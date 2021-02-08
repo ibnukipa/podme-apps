@@ -11,6 +11,8 @@ PodMe uses a number of open source projects to work magnificent:
 * [Redux Toolkit](https://redux-toolkit.js.org) - is intended to be the standard way to write Redux logic
 * [Axios](https://github.com/axios/axios) - Promise based HTTP client for the browser and node.js
 * [Lodash](https://lodash.com) - A modern JavaScript utility library delivering modularity, performance & extras
+* [MerageJS](https://miragejs.com) - Build complete frontend features, even if your API doesn't exist
+* [date-fns](https://date-fns.org) - Modern JavaScript date utility library
 
 ### Running from the Code
 PodMe requires
