@@ -15,7 +15,7 @@ export function makeServer({ environment = 'development' } = {}) {
     environment,
     serializers: {
       application: ApplicationSerializer,
-      podWithRelationships: ApplicationSerializer.extend({
+      facilities: ApplicationSerializer.extend({
         include: ['facilities'],
       }),
     },
@@ -71,8 +71,9 @@ export function makeServer({ environment = 'development' } = {}) {
       });
       this.get('/api/pod/:id', function (schema, req) {
         const id = req.params.id;
+        const query = req.queryParams;
         const pod = schema.pods.find(id);
-        return this.serialize(pod, 'pod-with-relationships');
+        return this.serialize(pod, query.include);
       });
       this.get('/api/pods', (schema, req) => {
         const {

@@ -14,6 +14,7 @@ const Colors = {
   blueGray700: '#455a64',
   white: '#ffffff',
   whiteDimmed: 'rgba(255,255,255, .25)',
+  whiteDimmed50: 'rgba(255,255,255, .5)',
   black: '#212121',
   purple: '#9c27b0',
   deppPurple: '#673ab7',
