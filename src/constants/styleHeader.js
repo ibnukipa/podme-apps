@@ -8,7 +8,7 @@ const styleHeader = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    minHeight: 35,
+    minHeight: 38,
   },
   containerLeft: {
     justifyContent: 'flex-start',

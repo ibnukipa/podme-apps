@@ -17,6 +17,7 @@ import IconLoading from 'components/IconLoading';
 import Image from 'components/Image';
 import Divider from 'components/Divider';
 import Button from 'components/Button';
+import Touchable from 'components/Touchable';
 
 import {
   podListRequested,
@@ -50,20 +51,26 @@ const HomeHeader = () => {
 const PodSnippet = memo(({ id }) => {
   const navigation = useNavigation();
   const pod = useSelector((state) => podSelector(state, Number(id)));
-  const pressImage = useCallback(() => navigation.navigate('Pod', { id }), [navigation]);
+  const goToPodDetail = useCallback(() => navigation.navigate('Pod', { id }), [navigation]);
+  const goToPodSchedule = useCallback(() => navigation.navigate('PodSchedule', { id }), [
+    navigation,
+  ]);
+
   return (
     <View>
       <View style={styles.podSnippetContainer}>
         <Image
-          onPress={pressImage}
+          onPress={goToPodDetail}
           source={{ uri: pod.banner }}
           style={styles.podSnippetImage}
           resizeMode="cover"
         />
         <View style={styles.podSnippetContent}>
-          <Text bold color={Colors.primary} size={'xxLarge'}>
-            {pod.name}
-          </Text>
+          <Touchable onPress={goToPodDetail}>
+            <Text bold color={Colors.primary} size={'xxLarge'}>
+              {pod.name}
+            </Text>
+          </Touchable>
           <Divider />
           <Text color={Colors.blueGray}>{pod.description}</Text>
           <Divider space={spaceSize.large} />
@@ -71,7 +78,11 @@ const PodSnippet = memo(({ id }) => {
             <Text medium size={'large'} color={Colors.secondary}>
               ${pod.price} <Text color={Colors.blueGray100}>/ pax</Text>
             </Text>
-            <Button containerStyle={{ height: spaceSize.xxxLarge }} text={'BOOK'} />
+            <Button
+              onPress={goToPodSchedule}
+              containerStyle={{ height: spaceSize.xxxLarge }}
+              text={'BOOK'}
+            />
           </View>
         </View>
       </View>

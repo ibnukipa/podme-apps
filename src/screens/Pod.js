@@ -23,22 +23,19 @@ import useAxios from 'hooks/useAxios';
 
 import { useNavigation } from '@react-navigation/native';
 
-const PodHeader = ({ id }) => {
+export const PodHeader = ({ id, description }) => {
   const navigation = useNavigation();
   const pressBack = useCallback(() => navigation.goBack(), [navigation]);
   const pod = useSelector((state) => podSelector(state, id));
   return (
     <View style={[styleHeader.container, styleHeader.containerLeft]}>
       <Icon onPress={pressBack} size={'huge'} name="arrow-back" color={Colors.white} />
-      <Text
-        style={styleHeader.titleLeft}
-        numberOfLines={1}
-        size={'large'}
-        medium
-        color={Colors.white}
-      >
-        {pod.name}
-      </Text>
+      <View style={styleHeader.titleLeft}>
+        <Text numberOfLines={1} size={'xLarge'} bold color={Colors.white}>
+          {pod.name}
+        </Text>
+        {description && <Text color={Colors.whiteDimmed50}>{description}</Text>}
+      </View>
     </View>
   );
 };
@@ -58,10 +55,13 @@ const FacilitySnippet = ({ id }) => {
   );
 };
 
-const Pod: () => React$Node = ({ route }) => {
+const Pod: () => React$Node = ({ route, navigation }) => {
   const { id } = route.params;
   const insets = useSafeAreaInsets();
   const dispatch = useDispatch();
+  const goToPodSchedule = useCallback(() => navigation.navigate('PodSchedule', { id }), [
+    navigation,
+  ]);
 
   const pod = useSelector((state) => podSelector(state, id));
   const { fetch: fetchPod } = useAxios(getPod, {
@@ -70,7 +70,7 @@ const Pod: () => React$Node = ({ route }) => {
     },
   });
   useEffect(() => {
-    fetchPod({ data: { id } });
+    fetchPod({ data: { id }, params: { include: 'facilities' } });
   }, [id]);
   const paddingBottom = useCallback(
     () => (insets.bottom > 0 ? insets.bottom : insets.bottom + spaceSize.medium),
@@ -102,7 +102,11 @@ const Pod: () => React$Node = ({ route }) => {
         <Text medium size={'large'} color={Colors.secondary}>
           ${pod.price} <Text color={Colors.blueGray100}>/ pax</Text>
         </Text>
-        <Button containerStyle={{ height: spaceSize.xxxLarge }} text={'BOOK'} />
+        <Button
+          onPress={goToPodSchedule}
+          containerStyle={{ height: spaceSize.xxxLarge }}
+          text={'BOOK'}
+        />
       </View>
     </Container>
   );

@@ -5,6 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Entypo from 'react-native-vector-icons/Entypo';
 import { Animated } from 'react-native';
 
 import Colors from 'constants/colors';
@@ -18,11 +19,13 @@ import Text from 'components/Text';
 const IoniconsAnimated = Animated.createAnimatedComponent(Ionicons);
 const FontAwesome5Animated = Animated.createAnimatedComponent(FontAwesome5);
 const MaterialCommunityIconsAnimated = Animated.createAnimatedComponent(MaterialCommunityIcons);
+const EntypoAnimated = Animated.createAnimatedComponent(Entypo);
 
 const TYPES = {
   ion: IoniconsAnimated,
   aw5: FontAwesome5Animated,
   mat: MaterialCommunityIconsAnimated,
+  ent: EntypoAnimated,
 };
 
 type IconProps = {
