@@ -1,6 +1,9 @@
 # PodMe
 Mobile platform for my pod
 
+### Credentials
+`username:password`
+
 ### Techs
 PodMe uses a number of open source projects to work magnificent:
 * [React](https://reactjs.org) - makes it painless to create interactive UIs
